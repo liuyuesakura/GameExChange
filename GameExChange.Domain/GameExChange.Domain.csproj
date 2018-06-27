@@ -1,0 +1,17 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp2.0</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Folder Include="Repos\" />
+    <Folder Include="Specifications\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\GameExChange.Events\GameExChange.Events.csproj" />
+    <ProjectReference Include="..\GameExchange.Infrastructure\GameExChange.Infrastructure.csproj" />
+  </ItemGroup>
+
+</Project>
