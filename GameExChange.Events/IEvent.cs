@@ -9,7 +9,7 @@ namespace GameExChange.Events
     /// </summary>
     public interface IEvent
     {
-        Guid Id { get; }
+        Guid ID { get; }
 
         // 获取产生事件的时间
         DateTime TimeStamp { get; }
