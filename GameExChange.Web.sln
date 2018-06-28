@@ -7,11 +7,13 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GameExChange.Web", "GameExC
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "GameExChange.Base", "GameExChange.Base", "{DD3F453A-81D9-4DF0-A887-483335C12DF2}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GameExChange.Domain", "GameExchange.Domain\GameExChange.Domain.csproj", "{56B9D7EB-C208-42EC-9A0A-C955DD3DC510}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GameExChange.Domain", "GameExchange.Domain\GameExChange.Domain.csproj", "{56B9D7EB-C208-42EC-9A0A-C955DD3DC510}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GameExChange.Events", "GameExChange.Events\GameExChange.Events.csproj", "{4EACDD48-4AB4-4E12-8647-45664E5DF3FF}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GameExChange.Events", "GameExChange.Events\GameExChange.Events.csproj", "{4EACDD48-4AB4-4E12-8647-45664E5DF3FF}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GameExChange.Infrastructure", "GameExchange.Infrastructure\GameExChange.Infrastructure.csproj", "{EF770CA4-61E4-45EA-95F5-ABF08FFC4A59}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GameExChange.Infrastructure", "GameExchange.Infrastructure\GameExChange.Infrastructure.csproj", "{EF770CA4-61E4-45EA-95F5-ABF08FFC4A59}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GameExChange.Repository", "GameExChange.Repository\GameExChange.Repository.csproj", "{92A6D281-15E2-47CA-934E-27D0EB271EA7}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -35,6 +37,10 @@ Global
 		{EF770CA4-61E4-45EA-95F5-ABF08FFC4A59}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{EF770CA4-61E4-45EA-95F5-ABF08FFC4A59}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{EF770CA4-61E4-45EA-95F5-ABF08FFC4A59}.Release|Any CPU.Build.0 = Release|Any CPU
+		{92A6D281-15E2-47CA-934E-27D0EB271EA7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{92A6D281-15E2-47CA-934E-27D0EB271EA7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{92A6D281-15E2-47CA-934E-27D0EB271EA7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{92A6D281-15E2-47CA-934E-27D0EB271EA7}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -43,6 +49,7 @@ Global
 		{56B9D7EB-C208-42EC-9A0A-C955DD3DC510} = {DD3F453A-81D9-4DF0-A887-483335C12DF2}
 		{4EACDD48-4AB4-4E12-8647-45664E5DF3FF} = {DD3F453A-81D9-4DF0-A887-483335C12DF2}
 		{EF770CA4-61E4-45EA-95F5-ABF08FFC4A59} = {DD3F453A-81D9-4DF0-A887-483335C12DF2}
+		{92A6D281-15E2-47CA-934E-27D0EB271EA7} = {DD3F453A-81D9-4DF0-A887-483335C12DF2}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {5E9B2D67-5093-4381-AC17-8DE56B47E51C}

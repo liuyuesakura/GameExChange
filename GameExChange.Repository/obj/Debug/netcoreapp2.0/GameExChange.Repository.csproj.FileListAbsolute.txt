@@ -1,0 +1,7 @@
+E:\Project\GameExChange\GameExChange.Repository\bin\Debug\netcoreapp2.0\GameExChange.Domain.dll
+E:\Project\GameExChange\GameExChange.Repository\bin\Debug\netcoreapp2.0\GameExChange.Events.dll
+E:\Project\GameExChange\GameExChange.Repository\bin\Debug\netcoreapp2.0\GameExChange.Infrastructure.dll
+E:\Project\GameExChange\GameExChange.Repository\obj\Debug\netcoreapp2.0\GameExChange.Repository.csprojAssemblyReference.cache
+E:\Project\GameExChange\GameExChange.Repository\obj\Debug\netcoreapp2.0\GameExChange.Repository.csproj.CoreCompileInputs.cache
+E:\Project\GameExChange\GameExChange.Repository\obj\Debug\netcoreapp2.0\GameExChange.Repository.AssemblyInfoInputs.cache
+E:\Project\GameExChange\GameExChange.Repository\obj\Debug\netcoreapp2.0\GameExChange.Repository.AssemblyInfo.cs

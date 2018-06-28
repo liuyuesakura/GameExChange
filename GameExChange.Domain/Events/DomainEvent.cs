@@ -24,7 +24,7 @@ namespace GameExChange.Domain.Events
             get { return _source; }
         }
 
-        public Guid Id
+        public Guid ID
         {
             get { return _id; }
             set { _id = value; }

@@ -12,6 +12,6 @@ namespace GameExChange.Domain
         /// <summary>
         /// 当前领域实体的全局唯一标识
         /// </summary>
-        Guid Id { get; }
+        Guid ID { get; }
     }
 }
