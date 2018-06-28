@@ -6,3 +6,9 @@ GameExChange\.Domain/obj/
 GameExChange\.Events/obj/
 
 GameExChange\.Infrastructure/obj/
+
+GameExChange\.Events/bin/
+
+GameExChange\.Infrastructure/bin/
+
+GameExChange\.Repository/obj/
