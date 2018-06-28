@@ -6,7 +6,6 @@
 
   <ItemGroup>
     <Folder Include="Repos\" />
-    <Folder Include="Specifications\" />
   </ItemGroup>
 
   <ItemGroup>
