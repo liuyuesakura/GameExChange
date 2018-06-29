@@ -5,7 +5,7 @@ using System.Net.Http;
 using System.Text;
 using System.Web;
 
-namespace GameExChange.Infrastructure
+namespace GameExChange.Infrastructure.Utils
 {
     public class ConfigHelper
     {

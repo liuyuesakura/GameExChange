@@ -5,7 +5,7 @@ using System.Text;
 using System.Xml;
 using System.Xml.Serialization;
 
-namespace GameExChange.Infrastructure
+namespace GameExChange.Infrastructure.Utils
 {
     public class XmlHelper
     {
