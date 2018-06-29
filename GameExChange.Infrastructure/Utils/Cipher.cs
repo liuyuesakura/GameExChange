@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Text;
 using System.Threading;
 
-namespace GameExChange.Infrastructure.Utils
+namespace GameExChange.Infrastructure
 {
     /// <summary>
     /// 编号生成
