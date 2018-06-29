@@ -12,3 +12,7 @@ GameExChange\.Events/bin/
 GameExChange\.Infrastructure/bin/
 
 GameExChange\.Repository/obj/
+
+GameExChange\.Repository/bin/
+
+GameExChange\.Domain/bin/
