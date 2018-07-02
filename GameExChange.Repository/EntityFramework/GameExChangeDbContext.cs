@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Data.Entity;
 using System.Text;
 
+using GameExChange.Domain.Model;
+
 namespace GameExChange.Repository.EntityFramework
 {
     public sealed class GameExChangeDbContext :DbContext
@@ -22,6 +24,24 @@ namespace GameExChange.Repository.EntityFramework
         //{
         //    get { return this.Set<T>}
         //}
+        public DbSet<User> Users
+        {
+            get { return Set<User>(); }
+        }
+
+        public DbSet<Game> Games
+        {
+            get { return Set<Game>(); }
+        }
+
+        public DbSet<Address> Addresses
+        {
+            get { return Set<Address>(); }
+        }
+        public DbSet<ExchangeRecord> ExchangeRecords
+        {
+            get { return Set<ExchangeRecord>(); }
+        }
 
         #endregion
 
@@ -30,7 +50,20 @@ namespace GameExChange.Repository.EntityFramework
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
 
+            //modelBuilder
+            //    .Configurations
+            //    .Add(new UserTypeConfiguration())
+            //    .Add(new ProductTypeConfiguration())
+            //    .Add(new CategoryTypeConfiguration())
+            //    .Add(new ProductCategorizationTypeConfiguration())
+            //    .Add(new OrderItemTypeConfiguration())
+            //    .Add(new OrderTypeConfiguration())
+            //    .Add(new ShoppingCartItemTypeConfiguration())
+            //    .Add(new ShoppingCartTypeConfiguration())
+            //    .Add(new RoleTypeConfiguration())
+            //    .Add(new UserRoleTypeConfiguration());
             base.OnModelCreating(modelBuilder);
+
         }
 
         #endregion

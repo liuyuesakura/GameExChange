@@ -59,7 +59,7 @@ namespace GameExChange.Domain.Events
             var handlers = ServiceLocator.Instance.ResolveAll<IDomainEventHandler<TDomainEvent>>();
             foreach (var handler in handlers)
             {
-                if (handler.GetType().IsDefined(typeof(GameExChange.Events.Attributes.HandleAsyncAttribute), false))
+                if (handler.GetType().IsDefined(typeof(GameExChange.Events.HandleAsyncAttribute), false))
                     Task.Factory.StartNew(() => handler.Handle(domainEvent));
                 else
                     handler.Handle(domainEvent);
@@ -77,7 +77,7 @@ namespace GameExChange.Domain.Events
                 {
                     foreach (var handler in handlers)
                     {
-                        if (handler.GetType().IsDefined(typeof(GameExChange.Events.Attributes.HandleAsyncAttribute), false))
+                        if (handler.GetType().IsDefined(typeof(GameExChange.Events.HandleAsyncAttribute), false))
                         {
                             tasks.Add(Task.Factory.StartNew(() => handler.Handle(domainEvent)));
                         }
