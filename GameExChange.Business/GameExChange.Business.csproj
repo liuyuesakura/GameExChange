@@ -4,4 +4,9 @@
     <TargetFramework>netcoreapp2.0</TargetFramework>
   </PropertyGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\GameExchange.Domain\GameExChange.Domain.csproj" />
+    <ProjectReference Include="..\GameExChange.Repository\GameExChange.Repository.csproj" />
+  </ItemGroup>
+
 </Project>
