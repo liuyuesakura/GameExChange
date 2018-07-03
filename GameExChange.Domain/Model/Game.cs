@@ -11,10 +11,10 @@ namespace GameExChange.Domain.Model
     {
 
         #region database columns
-        /// <summary>
-        /// Id
-        /// </summary>		
-        public int Id { get; set; }
+        ///// <summary>
+        ///// Id
+        ///// </summary>		
+        //public int Id { get; set; }
         /// <summary>
         /// UserId
         /// </summary>		

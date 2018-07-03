@@ -19,6 +19,5 @@ namespace GameExChange.Repository.EntityRepos
         {
         }
 
-
     }
 }

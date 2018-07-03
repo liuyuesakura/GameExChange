@@ -11,10 +11,10 @@ namespace GameExChange.Domain.Model
     {
 
         #region database columns
-        /// <summary>
-        /// Id
-        /// </summary>		
-        public int Id { get; set; }
+        ///// <summary>
+        ///// Id
+        ///// </summary>		
+        //public int Id { get; set; }
         /// <summary>
         /// UserName
         /// </summary>		
@@ -43,10 +43,6 @@ namespace GameExChange.Domain.Model
         /// Remark
         /// </summary>		
         public string Remark { get; set; }
-        /// <summary>
-        /// 是否为管理员
-        /// </summary>		
-        public bool IsAdmin { get; set; }
         /// <summary>
         /// QQ
         /// </summary>		

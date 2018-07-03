@@ -16,3 +16,5 @@ GameExChange\.Repository/obj/
 GameExChange\.Repository/bin/
 
 GameExChange\.Domain/bin/
+
+GameExChange\.Business/obj/
