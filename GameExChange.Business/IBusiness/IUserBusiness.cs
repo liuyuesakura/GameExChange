@@ -8,6 +8,6 @@ namespace GameExChange.Business.IBusiness
 {
     public interface IUserBusiness
     {
-        OB.RegisterOutput Register(IB.RegisterInput);
+        OB.RegisterOutput Register(IB.RegisterInput input);
     }
 }
