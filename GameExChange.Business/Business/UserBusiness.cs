@@ -10,10 +10,14 @@ using GameExChange.Domain.Model;
 
 namespace GameExChange.Business
 {
-    public class UserBusiness : IBusiness.IUserBusiness
+    public class UserBusiness : ApplicationService, IBusiness.IUserBusiness
     {
-
         private readonly IUserRepository _userRepository;
+
+        public UserBusiness(IRepositoryContext context, IUserRepository userRepository) : base(context)
+        {
+            _userRepository = userRepository;
+        }
 
         public RegisterOutput Register(RegisterInput input)
         {

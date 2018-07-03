@@ -9,5 +9,6 @@ namespace GameExChange.Domain.Repos
     /// </summary>
     public interface IUserRepository:IRepository<Model.User>
     {
+
     }
 }

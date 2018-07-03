@@ -5,13 +5,18 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using GameExChange.Business.IBusiness;
+using GameExChange.Infrastructure;
 
 namespace GameExChange.Web.Controllers
 {
-    public class HomeController : Controller
+    public class HomeController : BaseController
     {
-
         private readonly IUserBusiness _userBusiness;
+
+        public HomeController()
+        {
+            _userBusiness = ServiceLocator.Instance.GetService<IUserBusiness>();
+        }
         public IActionResult Index()
         {
             return View();
@@ -33,6 +38,7 @@ namespace GameExChange.Web.Controllers
             };
             var output = _userBusiness.Register(input);
             return Json(output);
+           
         }
     }
 }
