@@ -8,7 +8,7 @@ namespace GameExChange.Business
 {
     public class UserBusiness : IBusiness.IUserBusiness
     {
-        public RegisterOutput Register(RegisterInput )
+        public RegisterOutput Register(RegisterInput input)
         {
             throw new NotImplementedException();
         }
