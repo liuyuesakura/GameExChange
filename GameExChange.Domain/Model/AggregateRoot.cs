@@ -6,7 +6,7 @@ namespace GameExChange.Domain.Model
 {
     public abstract class AggregateRoot:IAggregateRoot
     {
-        public Guid ID
+        public int ID
         {
             get;
             set;

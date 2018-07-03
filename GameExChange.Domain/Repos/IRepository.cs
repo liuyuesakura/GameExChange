@@ -13,7 +13,7 @@ namespace GameExChange.Domain.Repos
         void Add(TAggregateRoot aggregateRoot);
 
         // 根据聚合根的ID值，从仓储中读取聚合根
-        TAggregateRoot GetByKey(Guid key);
+        TAggregateRoot GetByKey(int key);
 
         TAggregateRoot GetBySpecification(ISpecification<TAggregateRoot> spec);
 

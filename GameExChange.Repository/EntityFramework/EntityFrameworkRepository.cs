@@ -70,7 +70,7 @@ namespace GameExChange.Repository.EntityFramework
             _efContext.RegisterNew(aggregateRoot);
         }
 
-        public TAggregateRoot GetByKey(Guid key)
+        public TAggregateRoot GetByKey(int key)
         {
             return _efContext.DbContext.Set<TAggregateRoot>().First(a => a.ID == key);
         }
