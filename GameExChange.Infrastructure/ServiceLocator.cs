@@ -25,7 +25,7 @@ namespace GameExChange.Infrastructure
             {
                 _container.LoadConfiguration();
             }
-            catch (Exception)
+            catch (Exception ex)
             {
 
                 throw;
@@ -41,7 +41,16 @@ namespace GameExChange.Infrastructure
 
         public T GetService<T>()
         {
-            return _container.Resolve<T>();
+            try
+            {
+                T t = _container.Resolve<T>();
+                return t;
+            }
+            catch(Exception ex)
+            {
+                return _container.Resolve<T>();
+            }
+
         }
 
         public void Register<TFrom, TTo>() where TTo : TFrom

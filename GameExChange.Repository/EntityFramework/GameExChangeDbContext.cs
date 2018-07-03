@@ -1,9 +1,18 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Data.Entity;
+//using Microsoft.EntityFrameworkCore;
 using System.Text;
 
 using GameExChange.Domain.Model;
+
+using Microsoft.Extensions.Configuration;
+//using Microsoft.Extensions.Configuration.Json;
+using System.IO;
+//using Microsoft.Extensions.Configuration.Json;
+
+using System.Data.Common;
+using System.Data;
 
 namespace GameExChange.Repository.EntityFramework
 {
@@ -11,11 +20,31 @@ namespace GameExChange.Repository.EntityFramework
     {
         #region ctro
         public GameExChangeDbContext()
-            : base("GameExChangeDB")
+            : base("GameExChangeDB") //
         {
             this.Configuration.AutoDetectChangesEnabled = true;
             this.Configuration.LazyLoadingEnabled = true;
         }
+
+        public GameExChangeDbContext(string connectionString)
+            : base(connectionString) //
+        {
+            this.Configuration.AutoDetectChangesEnabled = true;
+            this.Configuration.LazyLoadingEnabled = true;
+        }
+
+        //protected override void OnConfiguring(DbContextOptionsBuilder builder)
+        //{
+        //    var cbuilder = new ConfigurationBuilder()
+        //        .SetBasePath(Directory.GetCurrentDirectory())
+        //        .AddJsonFile("appsettings.json");
+  
+        //    Microsoft.Extensions.Configuration.IConfiguration configuration = cbuilder.Build();
+        //    //var builder = new DbContextOptionsBuilder<GameExChangeDbContext>();
+        //    builder.UseSqlServer(
+        //    configuration.GetSection("MySqlConnection").Get<MySqlConnection>()
+        //    );
+        //}
         #endregion
 
         #region public 
@@ -66,6 +95,11 @@ namespace GameExChange.Repository.EntityFramework
 
         }
 
+
+        //protected override void OnModelCreating(ModelBuilder modelBuilder)
+        //{
+        //    base.OnModelCreating(modelBuilder);
+        //}
         #endregion
     }
 }

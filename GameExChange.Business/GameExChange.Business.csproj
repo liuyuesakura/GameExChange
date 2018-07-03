@@ -5,7 +5,16 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="System.Configuration.ConfigurationManager" Version="4.5.0" />
+    <PackageReference Include="System.Data.Common" Version="4.3.0" />
+    <PackageReference Include="Unity.Interception" Version="5.5.3" />
+    <PackageReference Include="Unity.Interception.Configuration" Version="5.1.5" />
+    <PackageReference Include="Unity.Interception.NetCore" Version="4.0.4" />
+  </ItemGroup>
+
+  <ItemGroup>
     <ProjectReference Include="..\GameExchange.Domain\GameExChange.Domain.csproj" />
+    <ProjectReference Include="..\GameExchange.Infrastructure\GameExChange.Infrastructure.csproj" />
     <ProjectReference Include="..\GameExChange.Repository\GameExChange.Repository.csproj" />
   </ItemGroup>
 
