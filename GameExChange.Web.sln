@@ -15,7 +15,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GameExChange.Infrastructure
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GameExChange.Repository", "GameExChange.Repository\GameExChange.Repository.csproj", "{92A6D281-15E2-47CA-934E-27D0EB271EA7}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GameExChange.Business", "GameExChange.Business\GameExChange.Business.csproj", "{BC341774-8198-4903-94D6-1BD878259907}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GameExChange.Business", "GameExChange.Business\GameExChange.Business.csproj", "{BC341774-8198-4903-94D6-1BD878259907}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
