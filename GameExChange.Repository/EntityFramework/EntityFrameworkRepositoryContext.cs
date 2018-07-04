@@ -1,7 +1,6 @@
 ﻿using System;
 //using System.Data.Entity;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.EntityFrameworkCore.SqlServer;
 using System.Threading;
 using GameExChange.Domain.Repos;
 
@@ -32,21 +31,15 @@ namespace GameExChange.Repository.EntityFramework
                     Microsoft.Extensions.Configuration.IConfiguration configuration = cbuilder.Build();
                     MySqlConnection connection = configuration.GetSection("MySqlConnection").Get<MySqlConnection>();
 
-                    //new DbContextOptions<GameExChangeDbContext>()
 
                     var builder = new DbContextOptionsBuilder<GameExChangeDbContext>();
-                    //builder.Options;
-                    //var builder = new DbContextOptionsBuilder<GameExChangeDbContext>();
-                    builder.UseMySql(connection.ConnectionString);
+                    builder.UseMySQL(connection.ConnectionString);
 
 
 
                     _localCtx = new ThreadLocal<GameExChangeDbContext>(
                         () => new GameExChangeDbContext(builder.Options)
                     );
-                    //_localCtx = new ThreadLocal<GameExChangeDbContext>(
-                    //    () => new GameExChangeDbContext()
-                    //);
 
                 }
                 return _localCtx.Value;
