@@ -5,6 +5,9 @@ using Microsoft.EntityFrameworkCore.SqlServer;
 using System.Threading;
 using GameExChange.Domain.Repos;
 
+//using MySql.Data.EntityFrameworkCore.Extensions;
+
+using Pomelo.EntityFrameworkCore.MySql;
 
 using Microsoft.Extensions.Configuration;
 using System.IO;
@@ -34,7 +37,7 @@ namespace GameExChange.Repository.EntityFramework
                     var builder = new DbContextOptionsBuilder<GameExChangeDbContext>();
                     //builder.Options;
                     //var builder = new DbContextOptionsBuilder<GameExChangeDbContext>();
-                    builder.UseSqlServer(connection.ConnectionString);
+                    builder.UseMySql(connection.ConnectionString);
 
 
 
