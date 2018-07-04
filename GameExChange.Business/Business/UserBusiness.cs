@@ -36,6 +36,8 @@ namespace GameExChange.Business
                 QQ = string.Empty
             };
             _userRepository.Add(user);
+            this.RepositoryContext.Commit();
+
             return new RegisterOutput()
             {
                 IsSuccess = true,

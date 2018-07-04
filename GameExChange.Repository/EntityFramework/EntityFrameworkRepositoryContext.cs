@@ -31,7 +31,7 @@ namespace GameExChange.Repository.EntityFramework
                         .AddJsonFile("appsettings.json");
                     Microsoft.Extensions.Configuration.IConfiguration configuration = cbuilder.Build();
                     MySqlConnection connection = configuration.GetSection("MySqlConnection").Get<MySqlConnection>();
-
+                    MssqlConnection mssqlConnection = configuration.GetSection("MssqlConnection").Get<MssqlConnection>();
                     //new DbContextOptions<GameExChangeDbContext>()
 
                     var builder = new DbContextOptionsBuilder<GameExChangeDbContext>();

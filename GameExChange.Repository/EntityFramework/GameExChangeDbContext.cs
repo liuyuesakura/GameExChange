@@ -61,17 +61,17 @@ namespace GameExChange.Repository.EntityFramework
         //{
         //    get { return this.Set<T>}
         //}
-        public DbSet<User> Users
+        public DbSet<User> User
         {
             get { return Set<User>(); }
         }
 
-        public DbSet<Game> Games
+        public DbSet<Game> Game
         {
             get { return Set<Game>(); }
         }
 
-        public DbSet<Address> Addresses
+        public DbSet<Address> Address
         {
             get { return Set<Address>(); }
         }
