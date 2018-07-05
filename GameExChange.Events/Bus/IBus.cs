@@ -1,6 +1,6 @@
-﻿using System;
+﻿using GameExChange.Infrastructure;
+using System;
 using System.Collections.Generic;
-using GameExChange.Infrastructure;
 
 namespace GameExChange.Events.Bus
 {

@@ -1,7 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using GameExChange.Infrastructure;
+﻿using GameExChange.Infrastructure;
+using System;
 
 namespace GameExChange.Domain.Repos
 {

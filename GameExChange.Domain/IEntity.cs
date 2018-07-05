@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace GameExChange.Domain
+﻿namespace GameExChange.Domain
 {
     /// <summary>
     /// 领域实体接口

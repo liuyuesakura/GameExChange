@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace GameExChange.Domain.Model
+﻿namespace GameExChange.Domain.Model
 {
     //Address
     public class Address : AggregateRoot

@@ -1,6 +1,4 @@
-﻿using System;
-
-namespace GameExChange.Infrastructure
+﻿namespace GameExChange.Infrastructure
 {
     public interface IUnitOfWork
     {

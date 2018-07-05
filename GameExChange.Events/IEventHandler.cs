@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace GameExChange.Events
+﻿namespace GameExChange.Events
 {
     /// <summary>
     /// 事件处理接口

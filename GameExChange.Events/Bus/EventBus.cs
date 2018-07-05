@@ -1,9 +1,9 @@
-﻿using System;
+﻿using GameExChange.Infrastructure;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
 using System.Threading;
-using GameExChange.Infrastructure;
 
 namespace GameExChange.Events.Bus
 {
