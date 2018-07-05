@@ -1,15 +1,8 @@
-﻿using System;
-//using System.Data.Entity;
-using Microsoft.EntityFrameworkCore;
-using System.Threading;
-using GameExChange.Domain.Repos;
-
-//using MySql.Data.EntityFrameworkCore.Extensions;
-
-using Pomelo.EntityFrameworkCore.MySql;
-
+﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
+using System;
 using System.IO;
+using System.Threading;
 
 
 namespace GameExChange.Repository.EntityFramework
@@ -17,7 +10,6 @@ namespace GameExChange.Repository.EntityFramework
     public class EntityFrameworkRepositoryContext:IEntityFrameworkRepositoryContext
     {
         private ThreadLocal<GameExChangeDbContext> _localCtx = null;
-            //new ThreadLocal<GameExChangeDbContext>(() => new GameExChangeDbContext());
 
         public GameExChangeDbContext DbContext
         {
@@ -58,8 +50,6 @@ namespace GameExChange.Repository.EntityFramework
         public void RegisterNew<TAggregateRoot>(TAggregateRoot entity) where TAggregateRoot :class,Domain.IAggregateRoot
         {
 
-            ///DbContext.Database.EnsureCreated();
-
             if (_localCtx == null)
                 DbContext.Set<TAggregateRoot>().Add(entity);
             else
@@ -87,7 +77,6 @@ namespace GameExChange.Repository.EntityFramework
         #region IUnitWork Members
         public void Commit()
         {
-            //var validationError = _localCtx.Value.GetValidationErrors();
             if (_localCtx == null)
                 DbContext.SaveChanges();
             else

@@ -1,10 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-using GameExChange.Domain;
+﻿using DomainModel = GameExChange.Domain.Model;
 using DomainRepo = GameExChange.Domain.Repos;
-using DomainModel = GameExChange.Domain.Model;
+
 namespace GameExChange.Repository.EntityRepos
 {
     /// <summary>

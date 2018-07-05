@@ -1,13 +1,8 @@
 
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
 using GameExChange.Business.Input.UserBusiness;
 using GameExChange.Business.Output.UserBusiness;
-using GameExChange.Repository.EntityRepos;
-using GameExChange.Domain.Repos;
 using GameExChange.Domain.Model;
+using GameExChange.Domain.Repos;
 
 namespace GameExChange.Business
 {

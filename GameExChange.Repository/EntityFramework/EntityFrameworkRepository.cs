@@ -1,12 +1,10 @@
-﻿using System;
+﻿using GameExChange.Domain;
+using GameExChange.Domain.Repos;
+using GameExChange.Domain.Specifications;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Linq.Expressions;
-using System.Text;
-
-using GameExChange.Domain;
-using GameExChange.Domain.Repos;
-using GameExChange.Domain.Specifications;
 
 namespace GameExChange.Repository.EntityFramework
 {

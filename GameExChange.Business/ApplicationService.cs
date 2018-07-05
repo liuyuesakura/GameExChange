@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using GameExChange.Domain.Repos;
+﻿using GameExChange.Domain.Repos;
 
 namespace GameExChange.Business
 {

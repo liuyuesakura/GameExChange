@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace GameExChange.Business.Input.UserBusiness
+﻿namespace GameExChange.Business.Input.UserBusiness
 {
     public class RegisterInput
     {
