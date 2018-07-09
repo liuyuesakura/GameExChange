@@ -1,12 +1,10 @@
 ﻿namespace GameExChange.Business.Output.UserBusiness
 {
-    public class RegisterOutput
+    public class RegisterOutput:BaseOutput
     {
         public int UserID { get; set; }
 
         public string Name { get; set; }
-        
-        public bool IsSuccess { get; set; }
 
         public RegisterOutput()
         {
