@@ -1,4 +1,5 @@
-﻿using GameExChange.Domain.Repos;
+﻿using GameExChange.Repository.Contract;
+using GameExChange.Infrastructure.Interface;
 
 namespace GameExChange.Repository.EntityFramework
 {

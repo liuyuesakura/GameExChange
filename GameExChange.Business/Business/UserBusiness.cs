@@ -1,19 +1,22 @@
 
 using GameExChange.Business.Input.UserBusiness;
 using GameExChange.Business.Output.UserBusiness;
-using GameExChange.Domain.Model;
-using GameExChange.Domain.Repos;
+using GameExChange.Entity;
+using GameExChange.Repository.Contract;
 using System.Linq;
+using GameExChange.Infrastructure.Interface;
 
 namespace GameExChange.Business
 {
-    public class UserBusiness : ApplicationService, IBusiness.IUserBusiness
+    public class UserBusiness :  IUserBusiness
     {
         private readonly IUserRepository _userRepository;
+        private readonly IUnitOfWork _unitOfWork;
 
-        public UserBusiness(IRepositoryContext context, IUserRepository userRepository) : base(context)
+        public UserBusiness(IUserRepository userRepository,IUnitOfWork unitOfWork)
         {
             _userRepository = userRepository;
+            _unitOfWork = unitOfWork;
         }
 
         public DetailModifyOutput DetailModify(DetailModifyInput input)
@@ -144,7 +147,7 @@ namespace GameExChange.Business
                 QQ = string.Empty
             };
             _userRepository.Add(user);
-            this.RepositoryContext.Commit();
+            _unitOfWork.Commit();
 
             return new RegisterOutput()
             {

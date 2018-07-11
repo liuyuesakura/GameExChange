@@ -1,0 +1,10 @@
+﻿{
+  "modules": [
+    {
+      "type": "GameExChange.Repository.RepositoryModule, GameExChange.Repository"
+    },
+    {
+      "type": "GameExChange.Business.BusinessModule, GameExChange.Business"
+    }
+  ]
+}

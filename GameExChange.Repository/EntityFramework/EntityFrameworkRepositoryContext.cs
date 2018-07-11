@@ -3,6 +3,8 @@ using Microsoft.Extensions.Configuration;
 using System;
 using System.IO;
 using System.Threading;
+using GameExChange.Infrastructure.Interface;
+using GameExChange.Repository.Contract;
 
 
 namespace GameExChange.Repository.EntityFramework
@@ -10,6 +12,12 @@ namespace GameExChange.Repository.EntityFramework
     public class EntityFrameworkRepositoryContext:IEntityFrameworkRepositoryContext
     {
         private ThreadLocal<GameExChangeDbContext> _localCtx = null;
+
+
+        public EntityFrameworkRepositoryContext()
+        {
+
+        }
 
         public GameExChangeDbContext DbContext
         {
@@ -47,7 +55,7 @@ namespace GameExChange.Repository.EntityFramework
             get { return _id; }
         }
 
-        public void RegisterNew<TAggregateRoot>(TAggregateRoot entity) where TAggregateRoot :class,Domain.IAggregateRoot
+        public void RegisterNew<TAggregateRoot>(TAggregateRoot entity) where TAggregateRoot :class,IAggregateRoot
         {
 
             if (_localCtx == null)
@@ -56,7 +64,7 @@ namespace GameExChange.Repository.EntityFramework
                 _localCtx.Value.Set<TAggregateRoot>().Add(entity);
         }
 
-        public void RegisterModify<TAggregateRoot>(TAggregateRoot entity) where TAggregateRoot :class ,Domain.IAggregateRoot
+        public void RegisterModify<TAggregateRoot>(TAggregateRoot entity) where TAggregateRoot :class ,IAggregateRoot
         {
             if (_localCtx == null)
                 DbContext.Entry<TAggregateRoot>(entity).State = EntityState.Modified;
@@ -64,7 +72,7 @@ namespace GameExChange.Repository.EntityFramework
                 _localCtx.Value.Entry<TAggregateRoot>(entity).State = EntityState.Modified;
         }
 
-        public void RegisterDelete<TAggregateRoot>(TAggregateRoot entity) where TAggregateRoot:class,Domain.IAggregateRoot
+        public void RegisterDelete<TAggregateRoot>(TAggregateRoot entity) where TAggregateRoot:class,IAggregateRoot
         {
             if (_localCtx == null)
                 DbContext.Set<TAggregateRoot>().Remove(entity);

@@ -1,6 +1,6 @@
-﻿using GameExChange.Domain;
-using GameExChange.Domain.Repos;
-using GameExChange.Domain.Specifications;
+﻿using GameExChange.Infrastructure.Interface;
+using GameExChange.Repository.Contract;
+using GameExChange.Infrastructure.Specifications;
 using System;
 using System.Collections.Generic;
 using System.Linq;

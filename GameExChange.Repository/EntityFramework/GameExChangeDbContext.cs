@@ -1,7 +1,5 @@
-﻿using GameExChange.Domain.Model;
+﻿using GameExChange.Entity;
 using Microsoft.EntityFrameworkCore;
-
-
 
 
 namespace GameExChange.Repository.EntityFramework
