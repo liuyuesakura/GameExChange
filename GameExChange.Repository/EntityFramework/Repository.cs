@@ -4,6 +4,8 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Linq.Expressions;
+using GameExChange.Infrastructure.Specifications;
+using GameExChange.Infrastructure.Utils;
 
 namespace GameExChange.Repository.EntityFramework
 {
@@ -21,6 +23,9 @@ namespace GameExChange.Repository.EntityFramework
             this.DbSet = dbContext.Set<TEntity>();
         }
 
+
+        #region Normal Method 
+
         public virtual void Add(TEntity entity)
         {
             DbSet.Add(entity);
@@ -33,7 +38,7 @@ namespace GameExChange.Repository.EntityFramework
 
         public virtual void Delete(TEntity entity)
         {
-            if(DBContext.Entry(entity).State == EntityState.Detached)
+            if (DBContext.Entry(entity).State == EntityState.Detached)
             {
                 DbSet.Attach(entity);
             }
@@ -55,38 +60,80 @@ namespace GameExChange.Repository.EntityFramework
         public virtual TEntity Get(Expression<Func<TEntity, bool>> where)
         {
             return DbSet.Where<TEntity>(where).FirstOrDefault();
-            
+
         }
 
         public virtual TEntity GetByID(object id)
         {
             return DbSet.Find(id);
-            
+
         }
 
-        public IEnumerable<TEntity> GetList()
+        public virtual IEnumerable<TEntity> GetList()
         {
             return DbSet.ToList();
         }
 
-        public IEnumerable<TEntity> GetList(Expression<Func<TEntity, bool>> where)
+        public virtual IEnumerable<TEntity> GetList(Expression<Func<TEntity, bool>> where)
         {
             return DbSet.Where<TEntity>(where).ToList();
         }
 
-        public void Update(TEntity entity)
+        public virtual void Update(TEntity entity)
         {
             DbSet.Attach(entity);
             DBContext.Entry(entity).State = EntityState.Modified;
         }
 
-        public void Update(IEnumerable<TEntity> entities)
+        public virtual void Update(IEnumerable<TEntity> entities)
         {
-            foreach(var obj in entities)
+            foreach (var obj in entities)
             {
                 DbSet.Attach(obj);
                 DBContext.Entry(obj).State = EntityState.Modified;
             }
         }
+
+
+        #endregion
+
+        #region Specification Method
+
+        public bool Exist(ISpecification<TEntity> spec)
+        {
+            var count = DbSet.Count(spec.IsSatisfiedBy);
+            return count != 0;
+        }
+
+        public TEntity GetBySpecification(ISpecification<TEntity> spec)
+        {
+            return DbSet.FirstOrDefault(spec.IsSatisfiedBy);
+        }
+
+        public IEnumerable<TEntity> GetAllBySpecification(ISpecification<TEntity> spec)
+        {
+            return GetAllBySpecification(spec, null, SortOrder.UnSpecified);
+        }
+
+        public virtual IEnumerable<TEntity> GetAllBySpecification(ISpecification<TEntity> spec, Expression<Func<TEntity, dynamic>> sortPredicate, SortOrder sortOrder)
+        {
+            var query = DbSet.Where(spec.Expression);
+
+            if (sortPredicate != null)
+            {
+                switch (sortOrder)
+                {
+                    case SortOrder.Ascending:
+                        return query.OrderBy(sortPredicate).ToList();
+
+                    case SortOrder.Descending:
+                        return query.OrderByDescending(sortPredicate).ToList();
+                    default: break;
+                }
+            }
+            return query.ToList();
+        }
+
+        #endregion
     }
 }

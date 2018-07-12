@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Text;
 using System.Linq;
 using System.Linq.Expressions;
+using GameExChange.Infrastructure.Specifications;
+using GameExChange.Infrastructure.Utils;
 
 namespace GameExChange.Infrastructure.Interface
 {
@@ -13,6 +15,8 @@ namespace GameExChange.Infrastructure.Interface
     public interface IRepository<TEntity> :IRepository
         where TEntity :class
     {
+        #region Normal Method
+
         void Add(TEntity entity);
 
         void AddAll(IEnumerable<TEntity> entities);
@@ -36,5 +40,18 @@ namespace GameExChange.Infrastructure.Interface
         IEnumerable<TEntity> GetList(Expression<Func<TEntity, bool>> where);
 
 
+        #endregion
+
+        #region Specifications Method
+
+        TEntity GetBySpecification(ISpecification<TEntity> spec);
+
+        IEnumerable<TEntity> GetAllBySpecification(ISpecification<TEntity> spec);
+
+        IEnumerable<TEntity> GetAllBySpecification(ISpecification<TEntity> spec, Expression<Func<TEntity, dynamic>> sortPredicate, SortOrder sortOrder);
+
+        bool Exist(ISpecification<TEntity> spec);
+
+        #endregion
     }
 }
