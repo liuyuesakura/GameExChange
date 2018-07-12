@@ -5,6 +5,12 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="ModelConfigurations\**" />
+    <EmbeddedResource Remove="ModelConfigurations\**" />
+    <None Remove="ModelConfigurations\**" />
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="Autofac" Version="4.8.1" />
     <PackageReference Include="Autofac.Extensions.DependencyInjection" Version="4.2.2" />
     <PackageReference Include="Microsoft.EntityFrameworkCore" Version="2.1.1" />
@@ -16,9 +22,6 @@
     <PackageReference Include="MySql.Data.EntityFrameworkCore" Version="8.0.11" />
     <PackageReference Include="Pomelo.EntityFrameworkCore.MySql" Version="2.1.0-rc2-final" />
     <PackageReference Include="System.Configuration.ConfigurationManager" Version="4.5.0" />
-  </ItemGroup>
-  <ItemGroup>
-    <Folder Include="ModelConfigurations\" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\GameExChange.Repository.Contract\GameExChange.Repository.Contract.csproj" />

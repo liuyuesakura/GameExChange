@@ -1,18 +1,23 @@
 ﻿using System;
+using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace GameExChange.Entity
 {
     /// <summary>
     /// 交换记录
     /// </summary>
-    public class ExchangeRecord : AggregateRoot
+    [Table("ExChangeRecord")]
+    public class ExchangeRecord
     {
 
         #region database columns
         ///// <summary>
         ///// Id
-        ///// </summary>		
-        //public int Id { get; set; }
+        ///// </summary>
+        [Key]
+        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
+        public int Id { get; set; }
         /// <summary>
         /// LenderGameId
         /// </summary>		

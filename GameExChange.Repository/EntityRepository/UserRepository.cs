@@ -1,16 +1,16 @@
-﻿using GameExChange.Entity;
+﻿using System;
+using System.Collections.Generic;
+using System.Text;
 using GameExChange.Repository.Contract;
+using GameExChange.Repository.EntityFramework;
+using GameExChange.Entity;
+using Microsoft.EntityFrameworkCore;
 
 namespace GameExChange.Repository.EntityRepository
 {
-    /// <summary>
-    /// 用户仓储实现
-    /// </summary>
-    public class UserRepository : EntityFramework.EntityFrameworkRepository<User>, IUserRepository, IRepositoryMark
+    public class UserRepository : Repository<User>, IUserRepository
     {
-
-        public UserRepository(IRepositoryContext context)
-            : base(context)
+        public UserRepository(GameExChangeDbContext context) : base(context)
         {
         }
 

@@ -1,14 +1,21 @@
-﻿namespace GameExChange.Entity
+﻿using System;
+using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
+
+namespace GameExChange.Entity
 {
+    [Table("Address")]
     //Address
-    public class Address : AggregateRoot
+    public class Address 
     {
 
         #region database columns
         ///// <summary>
         ///// Id
         ///// </summary>		
-        //public int Id { get; set; }
+        [Key]
+        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
+        public int Id { get; set; }
         /// <summary>
         /// Country
         /// </summary>		

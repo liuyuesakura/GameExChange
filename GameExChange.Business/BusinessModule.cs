@@ -12,6 +12,7 @@ namespace GameExChange.Business
             builder.RegisterAssemblyTypes(this.ThisAssembly)
                 .Where(t => t.IsAssignableTo<IBusinessMark>())
                 .AsImplementedInterfaces()
+                .AsSelf()
                 .InstancePerLifetimeScope();
         }
 

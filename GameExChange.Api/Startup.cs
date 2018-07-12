@@ -10,20 +10,22 @@ using Autofac.Extensions;
 using Autofac.Extensions.DependencyInjection;
 using Autofac.Configuration;
 using System;
+using GameExChange.Repository.EntityFramework;
+using Microsoft.EntityFrameworkCore;
 
 namespace GameExChange.Api
 {
     public class Startup
     {
-        public Startup(IHostingEnvironment  environment)
+        public Startup(IHostingEnvironment environment)
         {
 
-           var builder = new ConfigurationBuilder()
-                .SetBasePath(environment.ContentRootPath)
-                .AddJsonFile("appsettings.json",optional:false,reloadOnChange:true)
-                .AddJsonFile($"appsettings.{environment.EnvironmentName}.json", optional: true)
-                .AddJsonFile("autofac.json")
-                .AddEnvironmentVariables();
+            var builder = new ConfigurationBuilder()
+                 .SetBasePath(environment.ContentRootPath)
+                 .AddJsonFile("appsettings.json", optional: false, reloadOnChange: true)
+                 .AddJsonFile($"appsettings.{environment.EnvironmentName}.json", optional: true)
+                 .AddJsonFile("autofac.json")
+                 .AddEnvironmentVariables();
             Configuration = builder.Build();
         }
 
@@ -34,6 +36,11 @@ namespace GameExChange.Api
         // This method gets called by the runtime. Use this method to add services to the container.
         public IServiceProvider ConfigureServices(IServiceCollection services)
         {
+            services.AddDbContext<GameExChangeDbContext>(option =>
+            option.UseMySql(Configuration.GetConnectionString("Mysql")));
+
+            services.AddScoped<DbContext>(provider => provider.GetService<GameExChangeDbContext>());
+
             services.AddCors();
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
 
@@ -47,8 +54,12 @@ namespace GameExChange.Api
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        public void Configure(IApplicationBuilder app, IHostingEnvironment env,IApplicationLifetime appLifetime)
+        public void Configure(IApplicationBuilder app, IHostingEnvironment env, IApplicationLifetime appLifetime, GameExChangeDbContext context)
         {
+            app.UseCors(builer => builer.WithOrigins("http://localhost:5001")
+            .AllowAnyHeader().AllowAnyMethod());
+
+
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
@@ -69,6 +80,7 @@ namespace GameExChange.Api
                     template: "{controller}/{action=Index}/{id?}");
             });
 
+            DbInitializer.Initailize(context);
             appLifetime.ApplicationStopped.Register(() => this.Container.Dispose());
         }
     }

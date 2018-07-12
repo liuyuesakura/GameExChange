@@ -1,16 +1,23 @@
-﻿namespace GameExChange.Entity
+﻿using System;
+using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
+
+namespace GameExChange.Entity
 {
     /// <summary>
     /// 用户表
     /// </summary>
-    public class User : AggregateRoot
+    [Table("User")]
+    public class User 
     {
 
         #region database columns
-        ///// <summary>
-        ///// Id
-        ///// </summary>		
-        //public int Id { get; set; }
+        /// <summary>
+        /// Id
+        /// </summary>
+        [Key]
+        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
+        public int Id { get; set; }
         /// <summary>
         /// UserName
         /// </summary>		
