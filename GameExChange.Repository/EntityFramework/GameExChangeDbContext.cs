@@ -1,57 +1,25 @@
-﻿using GameExChange.Domain.Model;
-using Microsoft.EntityFrameworkCore;
-
-
-
+﻿using Microsoft.EntityFrameworkCore;
+using System;
+using System.Collections.Generic;
+using System.Text;
+using GameExChange.Entity;
 
 namespace GameExChange.Repository.EntityFramework
 {
-    public sealed class GameExChangeDbContext :DbContext
+    public class GameExChangeDbContext :DbContext
     {
-        #region ctro
         public GameExChangeDbContext(DbContextOptions<GameExChangeDbContext> options)
             :base(options)
         {
 
         }
-        #endregion
 
-        #region public 
-
-        public DbSet<User> User
+        protected override void OnModelCreating(ModelBuilder builder)
         {
-            get { return Set<User>(); }
+            builder.Entity<User>().ToTable("User");
+            builder.Entity<ExchangeRecord>().ToTable("ExChangeRecord");
+            builder.Entity<Game>().ToTable("Game");
+            builder.Entity<Address>().ToTable("Address");
         }
-
-        public DbSet<Game> Game
-        {
-            get { return Set<Game>(); }
-        }
-
-        public DbSet<Address> Address
-        {
-            get { return Set<Address>(); }
-        }
-        public DbSet<ExchangeRecord> ExchangeRecords
-        {
-            get { return Set<ExchangeRecord>(); }
-        }
-
-        #endregion
-
-        #region protected method
-
-
-        protected override void OnModelCreating(ModelBuilder modelBuilder)
-        {
-
-
-            base.OnModelCreating(modelBuilder);
-
-
-        }
-
-
-        #endregion
     }
 }

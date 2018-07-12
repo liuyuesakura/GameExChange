@@ -1,28 +1,33 @@
 
 using GameExChange.Business.Input.UserBusiness;
 using GameExChange.Business.Output.UserBusiness;
-using GameExChange.Domain.Model;
-using GameExChange.Domain.Repos;
+using GameExChange.Entity;
+using GameExChange.Repository.Contract;
 using System.Linq;
+using GameExChange.Infrastructure.Interface;
 
 namespace GameExChange.Business
 {
-    public class UserBusiness : ApplicationService, IBusiness.IUserBusiness
+
+    //内部判断逻辑移动到仓储中？？？
+    public class UserBusiness :  IUserBusiness
     {
         private readonly IUserRepository _userRepository;
+        private readonly IUnitOfWork _unitOfWork;
 
-        public UserBusiness(IRepositoryContext context, IUserRepository userRepository) : base(context)
+        public UserBusiness(IUserRepository userRepository,IUnitOfWork unitOfWork)
         {
             _userRepository = userRepository;
+            _unitOfWork = unitOfWork;
         }
 
         public DetailModifyOutput DetailModify(DetailModifyInput input)
         {
-            User user = _userRepository.GetByKey(input.Id);
+            User user = _userRepository.GetByID(input.Id);
             if(!string.IsNullOrEmpty(input.UserName))
             {
-                var users = _userRepository.GetAll(x => x.UserName == input.UserName, SortOrder.Ascending).ToList();
-                if(users.Count >= 0)
+                var tempuser = _userRepository.Get(x => x.UserName == input.UserName);
+                if(tempuser != null)
                 {
                     return new DetailModifyOutput()
                     {
@@ -34,8 +39,8 @@ namespace GameExChange.Business
             }
             if(!string.IsNullOrEmpty(input.Email))
             {
-                var users = _userRepository.GetAll(x => x.Email == input.Email, SortOrder.Ascending).ToList();
-                if (users.Count >= 0)
+                var tempuser = _userRepository.Get(x => x.Email == input.Email);
+                if (tempuser != null)
                 {
                     return new DetailModifyOutput()
                     {
@@ -47,8 +52,8 @@ namespace GameExChange.Business
             }
             if (!string.IsNullOrEmpty(input.Phone))
             {
-                var users = _userRepository.GetAll(x => x.Phone == input.Phone, SortOrder.Ascending).ToList();
-                if (users.Count >= 0)
+                var tempuser = _userRepository.Get(x => x.Phone == input.Phone);
+                if (tempuser != null)
                 {
                     return new DetailModifyOutput()
                     {
@@ -60,8 +65,8 @@ namespace GameExChange.Business
             }
             if (!string.IsNullOrEmpty(input.QQ))
             {
-                var users = _userRepository.GetAll(x => x.QQ == input.QQ, SortOrder.Ascending).ToList();
-                if (users.Count >= 0)
+                var tempuser = _userRepository.Get(x => x.QQ == input.QQ);
+                if (tempuser != null)
                 {
                     return new DetailModifyOutput()
                     {
@@ -72,6 +77,7 @@ namespace GameExChange.Business
                 user.QQ = input.QQ;
             }
             _userRepository.Update(user);
+            _unitOfWork.Commit();
             return new DetailModifyOutput()
             {
                 IsSuccess = true,
@@ -81,7 +87,7 @@ namespace GameExChange.Business
 
         public PasswordModifyOutput PasswordModify(PasswordModifyInput input)
         {
-            User user = _userRepository.GetByKey(input.Id);
+            User user = _userRepository.GetByID(input.Id);
             if(user.Password != input.OldPwd)
             {
                 return new PasswordModifyOutput()
@@ -93,7 +99,7 @@ namespace GameExChange.Business
             user.Password = input.NewPwd;
 
             _userRepository.Update(user);
-
+            _unitOfWork.Commit();
             return new PasswordModifyOutput()
             {
                 IsSuccess = true,
@@ -103,17 +109,17 @@ namespace GameExChange.Business
         public LoginOutput Login(LoginInput input)
         {
             var user =
-            _userRepository.GetByExpression(x =>
+            _userRepository.Get(x =>
                 (x.UserName == input.UserName || x.Phone == input.Mobile || x.Email == input.Email) && 
                 x.Password == input.Password
             );
-            if(user != null && user.ID > 0)
+            if(user != null && user.Id > 0)
             {
                 return new LoginOutput()
                 {
                     IsSuccess = true,
                     //ErrMessage = "指定的用户不存在"
-                    UserId = user.ID,
+                    UserId = user.Id,
                     UserName = user.UserName
                 };
             }
@@ -144,13 +150,13 @@ namespace GameExChange.Business
                 QQ = string.Empty
             };
             _userRepository.Add(user);
-            this.RepositoryContext.Commit();
+            _unitOfWork.Commit();
 
             return new RegisterOutput()
             {
                 IsSuccess = true,
                 Name = user.UserName,
-                UserID = user.ID
+                UserID = user.Id
             };
         }
 

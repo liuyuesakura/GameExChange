@@ -22,3 +22,9 @@ GameExChange\.Business/obj/
 ConsoleApp1/
 
 GameExChange\.Business/bin/
+/GameExChange.Api/bin
+/GameExChange.Api/obj
+/GameExChange.Entity/obj
+/GameExChange.Entity/bin
+/GameExChange.Repository.Contract/obj
+/GameExChange.Repository.Contract/bin
