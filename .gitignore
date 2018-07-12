@@ -28,3 +28,5 @@ GameExChange\.Business/bin/
 /GameExChange.Entity/bin
 /GameExChange.Repository.Contract/obj
 /GameExChange.Repository.Contract/bin
+
+GameExChange\.Web/obj/
