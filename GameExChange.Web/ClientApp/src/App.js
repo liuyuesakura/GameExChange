@@ -5,10 +5,13 @@ import Home from './components/Home';
 import Counter from './components/Counter';
 import FetchData from './components/FetchData';
 
+import GameList from './components/GameList';
+
 export default () => (
   <Layout>
     <Route exact path='/' component={Home} />
     <Route path='/counter' component={Counter} />
     <Route path='/fetchdata/:startDateIndex?' component={FetchData} />
+    <Route path='/gamelist' component={GameList} />
   </Layout>
 );

@@ -17,7 +17,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GameExChange.Repository.Con
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GameExChange.Api", "GameExChange.Api\GameExChange.Api.csproj", "{829FE3CA-B7D5-42E3-8C56-D4EA8926CF15}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GameExChange.Web", "GameExChange.Web\GameExChange.Web.csproj", "{0ADE8652-981C-46D7-8E29-E89E008596A3}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GameExChange.Web", "GameExChange.Web\GameExChange.Web.csproj", "{0ADE8652-981C-46D7-8E29-E89E008596A3}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
