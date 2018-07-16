@@ -1,0 +1,12 @@
+﻿
+
+.cur_p {
+    cursor: pointer;
+}
+
+.disabled {
+    color: gray;
+    cursor: not-allowed;
+    pointer-events: none;
+    opacity: 0.5;
+}

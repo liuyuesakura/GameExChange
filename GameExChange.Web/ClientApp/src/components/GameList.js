@@ -5,6 +5,8 @@ import { Link } from 'react-router-dom';
 
 import { actionCreators } from '../store/GameListStore';
 
+import './css/GameList.css';
+
 class GameList extends Component {
     componentWillMount() {
         // This method runs when the component is first added to the page
@@ -33,13 +35,14 @@ class GameList extends Component {
 function renderGameTable(props) {
     console.log(props.results);
     return (
-
+      
         <table className='table'>
             <thead>
                 <tr>
                     <th>Name</th>
                     <th>Type</th>
                     <th>Left</th>
+                    <th></th>
                 </tr>
             </thead>
             <tbody>
@@ -48,7 +51,16 @@ function renderGameTable(props) {
                         <tr key={obj.id}>
                             <td>{obj.gameName}</td>
                             <td>{obj.gameType}</td>
-                            <td>{obj.holdNum}</td>
+                            <td>{obj.holdNum - obj.exchangedNum}</td>
+                            <td>
+                                <a className={"cur_p " + ((obj.holdNum - obj.exchangedNum) <= 0 ? '' : 'disabled')}
+                                    to={`/GameDetail/${obj.id}`}
+                                    >交换</a>
+                                &nbsp;&nbsp;
+                                <a className={"cur_p " + ((obj.holdNum - obj.exchangedNum) > 0 ? '' : 'disabled')}
+                                    to={`/GameDetail/${obj.id}`}
+                                    >借入</a>
+                            </td>
                         </tr>
                     )
                 }

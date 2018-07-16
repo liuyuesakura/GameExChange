@@ -7,6 +7,8 @@ using Microsoft.AspNetCore.Mvc;
 
 using GameEntity = GameExChange.Entity.Game;
 
+using UserAuthorization = GameExChange.Web.Common.UserAuthorization;
+
 namespace GameExChange.Web.Controllers
 {
     [Route("api/[controller]")]
@@ -30,6 +32,7 @@ namespace GameExChange.Web.Controllers
         /// <param name="pageindex"></param>
         /// <returns></returns>
         [HttpGet("[action]")]
+        [UserAuthorization(Method = "GetList",LoginRequired = false)]
         public IEnumerable<GameEntity> GetList(int pageindex)
         {
             List<GameEntity> gelist = new List<GameEntity>();
