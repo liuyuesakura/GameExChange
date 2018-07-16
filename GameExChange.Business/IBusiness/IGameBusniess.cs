@@ -1,0 +1,11 @@
+﻿using IB = GameExChange.Business.Input.GameBusniess;
+using OB = GameExChange.Business.Output.GameBusniess;
+
+
+namespace GameExChange.Business
+{
+    public interface IGameBusniess:IBusinessMark
+    {
+        OB.GetListOutput GetList(IB.GetListInput input);
+    }
+}

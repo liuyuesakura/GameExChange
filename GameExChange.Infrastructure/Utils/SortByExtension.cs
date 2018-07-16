@@ -7,16 +7,16 @@ using System.Reflection;
 
 namespace GameExChange.Infrastructure.Utils
 {
-    internal static class SortByExtension
+    public static class SortByExtension
     {
         #region internal method
-        internal static IOrderedQueryable<TEntity> SortBy<TEntity>(this IQueryable<TEntity> query, Expression<Func<TEntity, dynamic>> sortPredicate)
+        public static IOrderedQueryable<TEntity> SortBy<TEntity>(this IQueryable<TEntity> query, Expression<Func<TEntity, dynamic>> sortPredicate)
             where TEntity : class
         {
             return InvokeSortBy(query, sortPredicate, SortOrder.Ascending);
         }
 
-        internal static IOrderedQueryable<TEntity> SortByDescending<TEntity>(this IQueryable<TEntity> query, Expression<Func<TEntity, dynamic>> sortPredicate)
+        public static IOrderedQueryable<TEntity> SortByDescending<TEntity>(this IQueryable<TEntity> query, Expression<Func<TEntity, dynamic>> sortPredicate)
             where TEntity : class
         {
             return InvokeSortBy(query, sortPredicate, SortOrder.Descending);
@@ -24,7 +24,7 @@ namespace GameExChange.Infrastructure.Utils
         #endregion
 
         #region private method
-        private static IOrderedQueryable<TEntity> InvokeSortBy<TEntity>(IQueryable<TEntity> query,
+        static IOrderedQueryable<TEntity> InvokeSortBy<TEntity>(IQueryable<TEntity> query,
             Expression<Func<TEntity, dynamic>> sortPredicate, SortOrder sortOrder)
             where TEntity : class
         {
@@ -74,7 +74,7 @@ namespace GameExChange.Infrastructure.Utils
 
         }
 
-        private static string GetSortingMethodName(SortOrder sortOrder)
+        static string GetSortingMethodName(SortOrder sortOrder)
         {
             switch (sortOrder)
             {

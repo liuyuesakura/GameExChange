@@ -53,5 +53,25 @@ namespace GameExChange.Infrastructure.Interface
         bool Exist(ISpecification<TEntity> spec);
 
         #endregion
+
+        #region 分页
+        PagedResult<TEntity> GetAll(Expression<Func<TEntity, dynamic>> sortPredicate,
+            SortOrder sortOrder, int pageIndex, int pageSize);
+
+        PagedResult<TEntity> GetAll(
+            ISpecification<TEntity> specification,
+            Expression<Func<TEntity, dynamic>> sortPredicate,
+            SortOrder sortOrder, int pageIndex, int pageSize);
+
+        PagedResult<TEntity> GetAll(Expression<Func<TEntity, dynamic>> sortPredicate,
+            SortOrder sortOrder, int pageIndex, int pageSize,
+            params Expression<Func<TEntity, dynamic>>[] eagerLoadingProperties);
+
+        PagedResult<TEntity> GetAll(ISpecification<TEntity> specification,
+            Expression<Func<TEntity, dynamic>> sortPredicate,
+            SortOrder sortOrder, int pageIndex, int pageSize,
+            params Expression<Func<TEntity, dynamic>>[] eagerLoadingProperties);
+
+        #endregion
     }
 }

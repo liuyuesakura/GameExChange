@@ -14,6 +14,13 @@ namespace GameExChange.Web.Controllers
     [Route("api/[controller]")]
     public class GameController : Controller
     {
+
+        private readonly Business.IGameBusniess _gameBusniess;
+
+        public GameController(Business.IGameBusniess busniess)
+        {
+            _gameBusniess = busniess;
+        }
         // GET: Game
         public ActionResult Index()
         {
@@ -37,33 +44,37 @@ namespace GameExChange.Web.Controllers
         {
             List<GameEntity> gelist = new List<GameEntity>();
 
-            gelist.Add(new GameEntity()
-            {
-                Id = 0,
-                AddTimeStamp = DateTime.Now,
-                ExchangedNum = 0,
-                GameName = "GameName",
-                GameType = "GameType",
-                HoldNum = 10,
-
-                Remark = "Remark",
-                Status = 0,
-                UserId = 0,
+            _gameBusniess.GetList(new Business.Input.GameBusniess.GetListInput() {
+                PageIndex = pageindex
             });
 
-            gelist.Add(new GameEntity()
-            {
-                Id = 1,
-                AddTimeStamp = DateTime.Now,
-                ExchangedNum = 0,
-                GameName = "GameName2",
-                GameType = "GameType2",
-                HoldNum = 10,
+            //gelist.Add(new GameEntity()
+            //{
+            //    Id = 0,
+            //    AddTimeStamp = DateTime.Now,
+            //    ExchangedNum = 0,
+            //    GameName = "GameName",
+            //    GameType = "GameType",
+            //    HoldNum = 10,
 
-                Remark = "Remark2",
-                Status = 0,
-                UserId = 0,
-            });
+            //    Remark = "Remark",
+            //    Status = 0,
+            //    UserId = 0,
+            //});
+
+            //gelist.Add(new GameEntity()
+            //{
+            //    Id = 1,
+            //    AddTimeStamp = DateTime.Now,
+            //    ExchangedNum = 0,
+            //    GameName = "GameName2",
+            //    GameType = "GameType2",
+            //    HoldNum = 10,
+
+            //    Remark = "Remark2",
+            //    Status = 0,
+            //    UserId = 0,
+            //});
 
             return gelist;
         }

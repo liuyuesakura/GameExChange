@@ -6,6 +6,7 @@ using System.Linq;
 using System.Linq.Expressions;
 using GameExChange.Infrastructure.Specifications;
 using GameExChange.Infrastructure.Utils;
+using GameExChange.Infrastructure;
 
 namespace GameExChange.Repository.EntityFramework
 {
@@ -132,6 +133,60 @@ namespace GameExChange.Repository.EntityFramework
                 }
             }
             return query.ToList();
+        }
+
+
+
+        #endregion
+
+        #region 分页
+
+        public PagedResult<TEntity> GetAll(Expression<Func<TEntity, dynamic>> sortPredicate, SortOrder sortOrder, int pageIndex, int pageSize)
+        {
+            return GetAll(new AnyExpressionSpecification<TEntity>(), sortPredicate, sortOrder, pageIndex, pageSize);
+        }
+
+        public PagedResult<TEntity> GetAll(ISpecification<TEntity> specification, Expression<Func<TEntity, dynamic>> sortPredicate, SortOrder sortOrder, int pageIndex, int pageSize)
+        {
+            pageIndex = pageIndex <= 0 ? 1 : pageIndex;
+            pageSize = pageSize <= 0 ? 10 : pageSize;
+
+            var query = DBContext.Set<TEntity>()
+                .Where(specification.Expression);
+
+            var skip = (pageIndex - 1) * pageSize;
+            skip = skip <= 0 ? 0 : skip;
+
+            var take = pageSize;
+
+            if (sortPredicate == null)
+                throw new InvalidOperationException("基于分页功能的查询必须指定排序字段和排序顺序。");
+
+            switch (sortOrder)
+            {
+                case SortOrder.Ascending:
+                    var pagedGroupAscending = query.SortBy(sortPredicate).Skip(skip).Take(take).GroupBy(p => new { Total = query.Count() }).FirstOrDefault();
+
+                    if (pagedGroupAscending == null)
+                        return null;
+                    return new PagedResult<TEntity>(pagedGroupAscending.Key.Total, (pagedGroupAscending.Key.Total + pageSize - 1) / pageSize, pageSize, pageIndex, pagedGroupAscending.Select(p => p).ToList());
+                default:
+                    var pagedGroupDescending = query.SortByDescending(sortPredicate).Skip(skip).Take(take).GroupBy(p => new { Total = query.Count() }).FirstOrDefault();
+                    if (pagedGroupDescending == null)
+                        return null;
+                    return new PagedResult<TEntity>(pagedGroupDescending.Key.Total, (pagedGroupDescending.Key.Total + pageSize - 1) / pageSize, pageSize, pageIndex, pagedGroupDescending.Select(p => p).ToList());
+            }
+
+        }
+
+        public PagedResult<TEntity> GetAll(Expression<Func<TEntity, dynamic>> sortPredicate, SortOrder sortOrder, int pageIndex, int pageSize, params Expression<Func<TEntity, dynamic>>[] eagerLoadingProperties)
+        {
+            throw new NotImplementedException();
+        }
+
+        public PagedResult<TEntity> GetAll(ISpecification<TEntity> specification, Expression<Func<TEntity, dynamic>> sortPredicate, SortOrder sortOrder, int pageIndex, int pageSize, params Expression<Func<TEntity, dynamic>>[] eagerLoadingProperties)
+        {
+            throw new NotImplementedException();
         }
 
         #endregion
