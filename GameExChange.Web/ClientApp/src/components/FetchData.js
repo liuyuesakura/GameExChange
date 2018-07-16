@@ -17,7 +17,8 @@ class FetchData extends Component {
     this.props.requestWeatherForecasts(startDateIndex);
   }
 
-  render() {
+    render() {
+        console.log(this.props);
     return (
       <div>
         <h1>Weather forecast</h1>
@@ -30,6 +31,7 @@ class FetchData extends Component {
 }
 
 function renderForecastsTable(props) {
+    console.log(props.forecasts);
   return (
     <table className='table'>
       <thead>
