@@ -25,6 +25,21 @@ namespace GameExChange.Business
             _gameRepository = gameRepository;
             _unitOfWork = unitOfWork;
         }
+        /// <summary>
+        /// 添加游戏
+        /// </summary>
+        /// <param name="input"></param>
+        /// <returns></returns>
+        public GameAddOutput Add(GameAddInput input)
+        {
+
+
+            return new GameAddOutput()
+            {
+                IsSuccess = true,
+                ErrMessage = ""
+            };
+        }
 
         public GetListOutput GetList(GetListInput input)
         {
@@ -68,5 +83,7 @@ namespace GameExChange.Business
                 };
             }
         }
+
+
     }
 }

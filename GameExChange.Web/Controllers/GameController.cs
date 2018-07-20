@@ -79,6 +79,29 @@ namespace GameExChange.Web.Controllers
             return gelist;
         }
 
+        [HttpGet("[action]")]
+        [UserAuthorization(Method = "AddGame", LoginRequired = true)]
+        public GameExChange.Business.Output.GameBusniess.GameAddOutput AddGame(GameExChange.Entity.Game gameEntity)
+        {
+            GameExChange.Business.Output.GameBusniess.GameAddOutput result = new Business.Output.GameBusniess.GameAddOutput();
+            if (string.IsNullOrEmpty(gameEntity.GameName))
+            {
+                result = new Business.Output.GameBusniess.GameAddOutput()
+                {
+                    IsSuccess = false,
+                    ErrMessage = "游戏名称不可为空"
+                };
+            }
+
+            gameEntity.HoldNum = gameEntity.HoldNum <= 0 ? 1 : gameEntity.HoldNum;
+            gameEntity.Status = (int)GameExChange.Entity.Enum.Game.Status.Pending;
+            //gameEntity.UserId = 
+            gameEntity.AddTimeStamp = DateTime.Now;
+            gameEntity.ExchangedNum = 0;
+
+            result = _gameBusniess.Add(new Business.Input.GameBusniess.GameAddInput() { Entity = gameEntity,User = new Entity.User() { } });
+            return result;
+        }
         //// GET: Game/Create
         //public ActionResult Create()
         //{

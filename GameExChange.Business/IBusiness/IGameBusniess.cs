@@ -7,5 +7,7 @@ namespace GameExChange.Business
     public interface IGameBusniess:IBusinessMark
     {
         OB.GetListOutput GetList(IB.GetListInput input);
+
+        OB.GameAddOutput Add(IB.GameAddInput input);
     }
 }
