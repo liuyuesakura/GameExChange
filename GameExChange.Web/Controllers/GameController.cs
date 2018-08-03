@@ -6,20 +6,40 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
 using GameEntity = GameExChange.Entity.Game;
+using UserEntity = GameExChange.Entity.User;
 
 using UserAuthorization = GameExChange.Web.Common.UserAuthorization;
 
 namespace GameExChange.Web.Controllers
 {
+
     [Route("api/[controller]")]
     public class GameController : Controller
     {
-
         private readonly Business.IGameBusniess _gameBusniess;
+        private readonly HttpContext _context;
 
-        public GameController(Business.IGameBusniess busniess)
+        private readonly IHttpContextAccessor _accessor;
+
+        private IFormCollection _collection;
+
+        private static string _token;
+        private readonly UserEntity _user;
+
+        //public GameController(Business.IGameBusniess busniess, HttpContext context)
+        //{
+
+        //    _gameBusniess = busniess;
+        //    _token = "";
+        //    _user = UserAuthorization.GetUserEntity(_token);
+        //}
+        public GameController(Business.IGameBusniess busniess, IHttpContextAccessor accessor)
         {
+
             _gameBusniess = busniess;
+            _token = "";
+            _accessor = accessor;
+            _user = UserAuthorization.GetUserEntity(_token);
         }
         // GET: Game
         public ActionResult Index()
@@ -39,13 +59,14 @@ namespace GameExChange.Web.Controllers
         /// <param name="pageindex"></param>
         /// <returns></returns>
         [HttpGet("[action]")]
-        [UserAuthorization(Method = "GetList",LoginRequired = false)]
-        public IEnumerable<GameEntity> GetList(int pageindex)
+        [HttpPost("[action]")]
+        [UserAuthorization(Method = "GetList", LoginRequired = false)]
+        public IEnumerable<GameEntity> GetList(int pageindex,[FromHeader] string sakura,[FromBody] string token)
         {
             List<GameEntity> gelist = new List<GameEntity>();
 
             _gameBusniess.GetList(new Business.Input.GameBusniess.GetListInput() {
-                PageIndex = pageindex
+                PageIndex = 1//pageindex
             });
 
             //gelist.Add(new GameEntity()
@@ -80,6 +101,7 @@ namespace GameExChange.Web.Controllers
         }
 
         [HttpGet("[action]")]
+        [HttpPost("[action]")]
         [UserAuthorization(Method = "AddGame", LoginRequired = true)]
         public GameExChange.Business.Output.GameBusniess.GameAddOutput AddGame(GameExChange.Entity.Game gameEntity)
         {
@@ -99,7 +121,9 @@ namespace GameExChange.Web.Controllers
             gameEntity.AddTimeStamp = DateTime.Now;
             gameEntity.ExchangedNum = 0;
 
-            result = _gameBusniess.Add(new Business.Input.GameBusniess.GameAddInput() { Entity = gameEntity,User = new Entity.User() { } });
+            gameEntity.UserId = _user.Id; // 这里需要去取到对应的用户ID
+
+            result = _gameBusniess.Add(new Business.Input.GameBusniess.GameAddInput() { Entity = gameEntity, User = _user }); //这里就不用再传了
             return result;
         }
         //// GET: Game/Create

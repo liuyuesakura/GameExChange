@@ -11,7 +11,9 @@ using GameExChange.Repository.EntityFramework;
 using Microsoft.EntityFrameworkCore;
 using Autofac.Extensions.DependencyInjection;
 using Autofac.Configuration;
+
 using System;
+using Microsoft.AspNetCore.Http;
 
 namespace GameExChange.Web
 {
@@ -31,6 +33,7 @@ namespace GameExChange.Web
                  .AddJsonFile($"appsettings.{environment.EnvironmentName}.json", optional: true)
                  .AddJsonFile("autofac.json")
                  .AddEnvironmentVariables();
+
             Configuration = builder.Build();
         }
 
@@ -54,10 +57,35 @@ namespace GameExChange.Web
                 configuration.RootPath = "ClientApp/build";
             });
 
+            services.AddHttpContextAccessor();
+
+            //services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
+
             var builder = new ContainerBuilder();
             builder.Populate(services);
             var module = new ConfigurationModule(Configuration);
             builder.RegisterModule(module);
+
+
+
+            //builder.Register(c => c.Resolve<HttpContextAccessor>().HttpContext)
+            //.As<HttpContext>()
+            //.InstancePerLifetimeScope();
+
+            //builder.Register(c => c.Resolve<HttpContext>().Request)
+            // .As<HttpRequest>()
+            // .InstancePerLifetimeScope();
+
+            //builder.Register(x => x.Resolve<HttpRequest>().Form)
+            //    .As<IFormCollection>()
+            //    .InstancePerLifetimeScope();
+            //builder.Register(c => c.Resolve<HttpContext>().Response)
+            //     .As<HttpResponse>()
+            //     .InstancePerLifetimeScope();
+            //builder.Register(c => c.Resolve<HttpContext>().Session)
+            //     .As<ISession>()
+            //     .InstancePerLifetimeScope();
+
             this.Container = builder.Build();
 
             return new AutofacServiceProvider(this.Container);

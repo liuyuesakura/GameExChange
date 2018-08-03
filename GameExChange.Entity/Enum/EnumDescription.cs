@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace GameExChange.Entity.Enum
 {
-    [AttributeUsage(AttributeTargets.Enum)]
+    [AttributeUsage(AttributeTargets.Enum|AttributeTargets.Field)]
     public class EnumDescription : Attribute
     {
         public string Description {set;get;}

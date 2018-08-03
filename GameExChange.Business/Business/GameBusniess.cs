@@ -33,6 +33,7 @@ namespace GameExChange.Business
         public GameAddOutput Add(GameAddInput input)
         {
 
+            _gameRepository.Add(input.Entity);
 
             return new GameAddOutput()
             {
