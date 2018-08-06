@@ -9,5 +9,8 @@ namespace GameExChange.Business
         OB.GetListOutput GetList(IB.GetListInput input);
 
         OB.GameAddOutput Add(IB.GameAddInput input);
+
+        OB.GameAuditOutput Audit(IB.GameAduitInput input);
+
     }
 }

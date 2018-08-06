@@ -41,6 +41,25 @@ namespace GameExChange.Business
                 ErrMessage = ""
             };
         }
+        /// <summary>
+        /// 审核
+        /// </summary>
+        /// <param name="input"></param>
+        /// <returns></returns>
+        public GameAuditOutput Audit(GameAduitInput input)
+        {
+            GameEntity entity = _gameRepository.Get(x=>x.Id == input.GameId);
+            entity.Status = (int)(input.IsAduit ? GameExChange.Entity.Enum.Game.Status.Available : GameExChange.Entity.Enum.Game.Status.Banned);
+            entity.Remark += input.Reason;
+
+            _gameRepository.Update(entity);
+
+            return new GameAuditOutput()
+            {
+                IsSuccess = true,
+                ErrMessage = ""
+            };
+        }
 
         public GetListOutput GetList(GetListInput input)
         {
