@@ -6,6 +6,8 @@ import { Link } from 'react-router-dom';
 
 import { Popover, NavBar, Icon } from 'antd-mobile';
 
+import { push } from 'react-router-redux';
+
 const Item = Popover.Item;
 
 const myImg = src => <img src={`https://gw.alipayobjects.com/zos/rmsportal/${src}.svg`} className="am-icon am-icon-xs" alt="" />;
@@ -13,20 +15,38 @@ class App extends React.Component {
     state = {
         visible: false,
         selected: '',
+        loginState: (sessionStorage.getItem('token') != null),
+        headThumb: sessionStorage.getItem('headthumb'),
     };
     onSelect = (opt) => {
-        // console.log(opt.props.value);
+        //console.log(opt);
         this.setState({
             visible: false,
             selected: opt.props.value,
         });
+        console.log(opt.props.value)
     };
+
     handleVisibleChange = (visible) => {
         this.setState({
             visible,
         });
     };
     render() {
+        var overlay = [
+            (<Item key="4" value="GameList" icon={myImg('tOtXhkIWzwotgGSeptou')} data-seed="logId" ><Link to="/GameList">GameList</Link></Item>),
+        ];
+
+        if (this.loginState) {
+            overlay.push(
+                (<Item key="5" value="Profile" icon={myImg('PKAgAqZWJVNwKsAJSmXd')} style={{ whiteSpace: 'nowrap' }}>My profile</Item>)
+            )
+        } else {
+            overlay.push(
+                (<Item key="6" value="Login" icon={myImg('uQIYTFeRrjPELImDRrPt')}><span style={{ marginRight: 5 }}>Login</span></Item>)
+            )
+        }
+
         return (<div>
             <NavBar
                 mode="light"
@@ -35,13 +55,7 @@ class App extends React.Component {
                         overlayClassName="fortest"
                         overlayStyle={{ color: 'currentColor' }}
                         visible={this.state.visible}
-                        overlay={[
-                            (<Item key="4" value="scan" icon={myImg('tOtXhkIWzwotgGSeptou')} data-seed="logId">Scan</Item>),
-                            (<Item key="5" value="special" icon={myImg('PKAgAqZWJVNwKsAJSmXd')} style={{ whiteSpace: 'nowrap' }}>My Qrcode</Item>),
-                            (<Item key="6" value="button ct" icon={myImg('uQIYTFeRrjPELImDRrPt')}>
-                                <span style={{ marginRight: 5 }}>Help</span>
-                            </Item>),
-                        ]}
+                        overlay={overlay}
                         align={{
                             overflow: { adjustY: 0, adjustX: 0 },
                             offset: [-10, 0],
