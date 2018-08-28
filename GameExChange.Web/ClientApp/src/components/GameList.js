@@ -7,13 +7,20 @@ import { actionCreators } from '../store/GameListStore';
 
 //import './css/GameList.css';
 
-import { Button } from 'antd-mobile';
+import { Carousel, WingBlank } from 'antd-mobile';
 
 class GameList extends Component {
+
+    state = {
+        data: ['1', '2', '3'],
+        imgHeight: 176,
+    }
+
     componentWillMount() {
         // This method runs when the component is first added to the page
         const pageIndex = parseInt(this.props.match.params.pageIndex, 10) || 0;
         this.props.requestGameDatas(pageIndex);
+
     }
 
     componentWillReceiveProps(nextProps) {
@@ -38,15 +45,56 @@ class GameList extends Component {
         //        cssEase: "cubic-bezier(0.87, 0.03, 0.41, 0.9)"
         //    });
         //}
+        setTimeout(() => {
+            this.setState({
+                data: ['AiyWuByWklrrUDlFignR', 'TekJlZRVCjLFexlOCuWn', 'IJOtIlfsYdTyaDTRVrLI'],
+            });
+        }, 100);
     }
 
     render() {
         return (
-            <div>
-                <h1>Game List</h1>
-                <p>It`s a Game List</p>
-                {renderGameTable(this.props)}
-            </div>
+            <WingBlank>
+                <Carousel className="space-carousel"
+                    frameOverflow="visible"
+                    cellSpacing={10}
+                    slideWidth={0.8}
+                    autoplay
+                    infinite
+                    beforeChange={(from, to) => console.log(`slide from ${from} to ${to}`)}
+                    afterChange={index => this.setState({ slideIndex: index })}
+                >
+                    {this.state.data.map((val, index) => (
+                        <a
+                            key={val}
+                            href="http://www.alipay.com"
+                            style={{
+                                display: 'block',
+                                position: 'relative',
+                                top: this.state.slideIndex === index ? -10 : 0,
+                                height: this.state.imgHeight,
+                                boxShadow: '2px 1px 1px rgba(0, 0, 0, 0.2)',
+                            }}
+                        >
+                            <img
+                                src={`https://zos.alipayobjects.com/rmsportal/${val}.png`}
+                                alt=""
+                                style={{ width: '20%', height:'20%', verticalAlign: 'top' }}
+                                onLoad={() => {
+                                    // fire window resize event to change height
+                                    window.dispatchEvent(new Event('resize'));
+                                    this.setState({ imgHeight: 'auto' });
+                                }}
+                            />
+                        </a>
+                    ))}
+                </Carousel>
+            </WingBlank>
+            //<div>
+            //    <h1>Game List</h1>
+            //    <p>It`s a Game List</p>
+            //    {renderGameTable(this.props)}
+            //</div>
         );
     }
 }
@@ -74,8 +122,6 @@ function renderGameTable(props) {
             {
                 props.results.map(obj =>
                     <div key={obj.id}>
-                        <Button>anti-button</Button>
-
                     </div>
                 )
             }
