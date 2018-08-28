@@ -1,40 +1,71 @@
 ﻿import React from 'react';
 import { Link } from 'react-router-dom';
-import { Glyphicon, Nav, Navbar, NavItem } from 'react-bootstrap';
-import { LinkContainer } from 'react-router-bootstrap';
-import './NavMenu.css';
+//import { Glyphicon, Nav, Navbar, NavItem } from 'react-bootstrap';
+//import { LinkContainer } from 'react-router-bootstrap';
+//import './NavMenu.css';
 
-export default props => (
-  <Navbar inverse fixedTop fluid collapseOnSelect>
-    <Navbar.Header>
-      <Navbar.Brand>
-        <Link to={'/'}>GameExChange.Web</Link>
-      </Navbar.Brand>
-      <Navbar.Toggle />
-    </Navbar.Header>
-    <Navbar.Collapse>
-      <Nav>
-        <LinkContainer to={'/'} exact>
-          <NavItem>
-            <Glyphicon glyph='home' /> Home
-          </NavItem>
-        </LinkContainer>
-        <LinkContainer to={'/counter'}>
-          <NavItem>
-            <Glyphicon glyph='education' /> Counter
-          </NavItem>
-        </LinkContainer>
-        <LinkContainer to={'/fetchdata'}>
-          <NavItem>
-            <Glyphicon glyph='th-list' /> Fetch data
-          </NavItem>
-                </LinkContainer>
-                <LinkContainer to={'/gamelist'}>
-                    <NavItem>
-                        <Glyphicon glyph='th-list' /> gamelist
-          </NavItem>
-                </LinkContainer>
-      </Nav>
-    </Navbar.Collapse>
-  </Navbar>
-);
+import { Popover, NavBar, Icon } from 'antd-mobile';
+
+const Item = Popover.Item;
+
+const myImg = src => <img src={`https://gw.alipayobjects.com/zos/rmsportal/${src}.svg`} className="am-icon am-icon-xs" alt="" />;
+class App extends React.Component {
+    state = {
+        visible: false,
+        selected: '',
+    };
+    onSelect = (opt) => {
+        // console.log(opt.props.value);
+        this.setState({
+            visible: false,
+            selected: opt.props.value,
+        });
+    };
+    handleVisibleChange = (visible) => {
+        this.setState({
+            visible,
+        });
+    };
+    render() {
+        return (<div>
+            <NavBar
+                mode="light"
+                rightContent={
+                    <Popover mask
+                        overlayClassName="fortest"
+                        overlayStyle={{ color: 'currentColor' }}
+                        visible={this.state.visible}
+                        overlay={[
+                            (<Item key="4" value="scan" icon={myImg('tOtXhkIWzwotgGSeptou')} data-seed="logId">Scan</Item>),
+                            (<Item key="5" value="special" icon={myImg('PKAgAqZWJVNwKsAJSmXd')} style={{ whiteSpace: 'nowrap' }}>My Qrcode</Item>),
+                            (<Item key="6" value="button ct" icon={myImg('uQIYTFeRrjPELImDRrPt')}>
+                                <span style={{ marginRight: 5 }}>Help</span>
+                            </Item>),
+                        ]}
+                        align={{
+                            overflow: { adjustY: 0, adjustX: 0 },
+                            offset: [-10, 0],
+                        }}
+                        onVisibleChange={this.handleVisibleChange}
+                        onSelect={this.onSelect}
+                    >
+                        <div style={{
+                            height: '100%',
+                            padding: '0 15px',
+                            marginRight: '-15px',
+                            display: 'flex',
+                            alignItems: 'center',
+                        }}
+                        >
+                            <Icon type="ellipsis" />
+                        </div>
+                    </Popover>
+                }
+            >
+                NavBar
+      </NavBar>
+        </div>);
+    }
+}
+
+export default props => (<App />);

@@ -1,16 +1,17 @@
 import React from 'react';
-import { Col, Grid, Row } from 'react-bootstrap';
+//import { Col, Grid, Row } from 'react-bootstrap';
 import NavMenu from './NavMenu';
 
+import { Flex, WhiteSpace } from 'antd-mobile';
+
 export default props => (
-  <Grid fluid>
-    <Row>
-      <Col sm={3}>
-        <NavMenu />
-      </Col>
-      <Col sm={9}>
-        {props.children}
-      </Col>
-    </Row>
-  </Grid>
+
+    <div className="flex-container">
+        <Flex>
+            <Flex.Item><NavMenu /></Flex.Item>
+            {
+                props.children
+            }
+        </Flex>
+        </div>
 );

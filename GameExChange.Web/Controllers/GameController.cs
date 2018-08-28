@@ -61,41 +61,43 @@ namespace GameExChange.Web.Controllers
         [HttpGet("[action]")]
         [HttpPost("[action]")]
         [UserAuthorization(Method = "GetList", LoginRequired = false)]
-        public IEnumerable<GameEntity> GetList(int pageindex,[FromHeader] string sakura,[FromBody] string token)
+        public IEnumerable<GameEntity> GetList(int pageindex)
         {
             List<GameEntity> gelist = new List<GameEntity>();
 
+            gelist = 
             _gameBusniess.GetList(new Business.Input.GameBusniess.GetListInput() {
                 PageIndex = 1//pageindex
+            }).Games;
+            gelist = gelist ?? new List<GameEntity>();
+
+            gelist.Add(new GameEntity()
+            {
+                Id = 0,
+                AddTimeStamp = DateTime.Now,
+                ExchangedNum = 0,
+                GameName = "GameName",
+                GameType = "GameType",
+                HoldNum = 10,
+
+                Remark = "Remark",
+                Status = 0,
+                UserId = 0,
             });
 
-            //gelist.Add(new GameEntity()
-            //{
-            //    Id = 0,
-            //    AddTimeStamp = DateTime.Now,
-            //    ExchangedNum = 0,
-            //    GameName = "GameName",
-            //    GameType = "GameType",
-            //    HoldNum = 10,
+            gelist.Add(new GameEntity()
+            {
+                Id = 1,
+                AddTimeStamp = DateTime.Now,
+                ExchangedNum = 0,
+                GameName = "GameName2",
+                GameType = "GameType2",
+                HoldNum = 10,
 
-            //    Remark = "Remark",
-            //    Status = 0,
-            //    UserId = 0,
-            //});
-
-            //gelist.Add(new GameEntity()
-            //{
-            //    Id = 1,
-            //    AddTimeStamp = DateTime.Now,
-            //    ExchangedNum = 0,
-            //    GameName = "GameName2",
-            //    GameType = "GameType2",
-            //    HoldNum = 10,
-
-            //    Remark = "Remark2",
-            //    Status = 0,
-            //    UserId = 0,
-            //});
+                Remark = "Remark2",
+                Status = 0,
+                UserId = 0,
+            });
 
             return gelist;
         }

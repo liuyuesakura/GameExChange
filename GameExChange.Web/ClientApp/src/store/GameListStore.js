@@ -8,7 +8,7 @@ export const actionCreators = {
         if (pageIndex === getState().gameListStore.pageIndex) {
             // Don't issue a duplicate request (we already have or are loading the requested data)
             return;
-        }
+        };
 
         dispatch({ type: requestGameListData, pageIndex });
 
@@ -17,7 +17,7 @@ export const actionCreators = {
         const results = await response.json();
         console.log(results);
         dispatch({ type: receiveGameListData, pageIndex, results });
-    }
+    },
 };
 
 export const reducer = (state, action) => {
